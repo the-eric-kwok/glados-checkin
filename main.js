@@ -55,8 +55,7 @@ const notify = async (notice) => {
           body: JSON.stringify({
             pushkey: option.split(':')[1],
             text:notice[0],
-            desp: notice.join('<br>'),
-            type:'markdown'
+            desp: notice.join('\n'),
           })
         })
       }
