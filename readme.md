@@ -24,6 +24,7 @@ GitHub Actions 实现 [GLaDOS][glados] 自动签到
     1. [WxPusher][wxpusher]: 格式 `wxpusher:{token}:{uid}`
     1. [PushPlus][pushplus]: 格式 `pushplus:{token}`
     1. [PushDeer][pushdeer]: 格式 `pushdeer:{token}`
+    1. [bark][bark]: 格式 `bark:{token}`
     1. Console: 格式 `console:log`, 作为日志输出, 一般用于调试
     1. 如需配置多个, 可以写为多行, 每行写一个
 
@@ -36,3 +37,4 @@ GitHub Actions 实现 [GLaDOS][glados] 自动签到
 [pushplus]: https://www.pushplus.plus/
 [wxpusher]: https://wxpusher.zjiecode.com/
 [pushdeer]: https://github.com/easychen/pushdeer
+[bark]: https://bark.day.app

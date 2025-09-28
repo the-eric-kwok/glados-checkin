@@ -55,11 +55,24 @@ const notify = async (notice) => {
           body: JSON.stringify({
             pushkey: option.split(':')[1],
             text:notice[0],
-            desp: notice.join('\n'),
+            desp: notice.join('. '),
+            type:'markdown'
           })
         })
       }
-      
+
+      if (option.startsWith('bark:')) {
+        const deviceKey = option.split(':')[1]
+        await fetch(`https://api.day.app/${deviceKey}/`, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json', 'charset': 'utf-8' },
+          body: JSON.stringify({
+            title: notice[0],
+            body: notice.join('. '),
+          })
+        })
+      }
+
       if (option.startsWith('wxpusher:')) {
         await fetch(`https://wxpusher.zjiecode.com/api/send/message`, {
           method: 'POST',
