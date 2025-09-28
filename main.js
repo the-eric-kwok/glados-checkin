@@ -60,6 +60,7 @@ const notify = async (notice) => {
           })
         })
       }
+      
       if (option.startsWith('wxpusher:')) {
         await fetch(`https://wxpusher.zjiecode.com/api/send/message`, {
           method: 'POST',
