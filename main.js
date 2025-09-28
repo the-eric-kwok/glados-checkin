@@ -70,7 +70,7 @@ const notify = async (notice) => {
             title: notice[0],
             body: notice.join('. '),
             group: 'GLaDOS Checkin',
-            icon: 'https://s2.loli.net/2025/09/28/ipzbCoTLM4ZRA3c.png',
+            icon: 'https://s2.loli.net/2025/09/28/1GgDtBWOHaxhmbZ.png',
           })
         })
       }
