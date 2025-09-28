@@ -69,6 +69,8 @@ const notify = async (notice) => {
           body: JSON.stringify({
             title: notice[0],
             body: notice.join('. '),
+            group: 'GLaDOS Checkin',
+            icon: 'https://glados.rocks/images/logo-new.png',
           })
         })
       }
