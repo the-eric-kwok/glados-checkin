@@ -45,7 +45,22 @@ const notify = async (notice) => {
         for (const line of notice) {
           console.log(line)
         }
-      } else if (option.startsWith('wxpusher:')) {
+        continue
+      } 
+      
+      if (option.startsWith('pushdeer:')) {
+        await fetch(`https://api2.pushdeer.com/message/push`, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            pushkey: option.split(':')[1],
+            text:notice[0],
+            desp: notice.join('<br>'),
+            type:'markdown'
+          })
+        })
+      }
+      if (option.startsWith('wxpusher:')) {
         await fetch(`https://wxpusher.zjiecode.com/api/send/message`, {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
@@ -57,7 +72,10 @@ const notify = async (notice) => {
             uids: option.split(':').slice(2),
           }),
         })
-      } else if (option.startsWith('pushplus:')) {
+        continue
+      } 
+      
+      if (option.startsWith('pushplus:')) {
         await fetch(`https://www.pushplus.plus/send`, {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
@@ -68,7 +86,10 @@ const notify = async (notice) => {
             template: 'markdown',
           }),
         })
-      } else if (option.startsWith('qyweixin:')) {
+        continue
+      } 
+      
+      if (option.startsWith('qyweixin:')) {
         const qyweixinToken = option.split(':')[1]
         const qyweixinNotifyRebotUrl = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=' + qyweixinToken;
         await fetch(qyweixinNotifyRebotUrl, {
@@ -81,19 +102,20 @@ const notify = async (notice) => {
             }
           }),
         })
-      } else {
-        // fallback
-        await fetch(`https://www.pushplus.plus/send`, {
-          method: 'POST',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({
-            token: option,
-            title: notice[0],
-            content: notice.join('<br>'),
-            template: 'markdown',
-          }),
-        })
+        continue
       }
+      
+      // fallback
+      await fetch(`https://www.pushplus.plus/send`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          token: option,
+          title: notice[0],
+          content: notice.join('<br>'),
+          template: 'markdown',
+        }),
+      })
     } catch (error) {
       throw error
     }
