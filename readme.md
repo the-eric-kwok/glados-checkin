@@ -31,6 +31,9 @@ GitHub Actions 实现 [GLaDOS][glados] 自动签到
 
 <img width="1146" height="802" alt="image" src="https://github.com/user-attachments/assets/b0c6d18f-13ab-40dc-8ccf-f1d392994d5b" />
 
+<img width="952" height="527" alt="image" src="https://github.com/user-attachments/assets/9972cb3a-d4f2-4e42-bb0c-2afc4bb1980a" />
+
+
 ---
 
 [glados]: https://github.com/glados-network/GLaDOS
