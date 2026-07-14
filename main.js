@@ -52,7 +52,7 @@ const notify = async (notice) => {
       let key = splited.length > 1 ? splited[1] : ''
 
       if (option.startsWith('sct:')) {
-        await fetch(`https://sctapi.ftqq.com/${key}`, {
+        await fetch(`https://sctapi.ftqq.com/${key}.send`, {
           method: 'POST',
           headers: { 'content-type': 'application/json', 'charset': 'utf-8' },
           body: JSON.stringify({
