@@ -46,15 +46,29 @@ const notify = async (notice) => {
           console.log(line)
         }
         continue
-      } 
+      }
+
+      let splited = option.split(':')
+      let key = splited.length > 1 ? splited[1] : ''
+
+      if (option.startsWith('sct:')) {
+        await fetch(`https://sctapi.ftqq.com/${key}`, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json', 'charset': 'utf-8' },
+          body: JSON.stringify({
+            title: notice[0],
+            desp: notice.join('. ')
+          })
+        })
+      }
       
       if (option.startsWith('pushdeer:')) {
         await fetch(`https://api2.pushdeer.com/message/push`, {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
           body: JSON.stringify({
-            pushkey: option.split(':')[1],
-            text:notice[0],
+            pushkey: key,
+            text: notice[0],
             desp: notice.join('. '),
             type:'markdown'
           })
@@ -62,7 +76,7 @@ const notify = async (notice) => {
       }
 
       if (option.startsWith('bark:')) {
-        const deviceKey = option.split(':')[1]
+        const deviceKey = key
         await fetch(`https://api.day.app/${deviceKey}/`, {
           method: 'POST',
           headers: { 'content-type': 'application/json', 'charset': 'utf-8' },
@@ -80,7 +94,7 @@ const notify = async (notice) => {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
           body: JSON.stringify({
-            appToken: option.split(':')[1],
+            appToken: key,
             summary: notice[0],
             content: notice.join('<br>'),
             contentType: 3,
@@ -95,7 +109,7 @@ const notify = async (notice) => {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
           body: JSON.stringify({
-            token: option.split(':')[1],
+            token: key,
             title: notice[0],
             content: notice.join('<br>'),
             template: 'markdown',
@@ -105,7 +119,7 @@ const notify = async (notice) => {
       } 
       
       if (option.startsWith('qyweixin:')) {
-        const qyweixinToken = option.split(':')[1]
+        const qyweixinToken = key
         const qyweixinNotifyRebotUrl = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=' + qyweixinToken;
         await fetch(qyweixinNotifyRebotUrl, {
           method: 'POST',
